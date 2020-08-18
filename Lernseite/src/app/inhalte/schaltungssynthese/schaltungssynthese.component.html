@@ -18,28 +18,31 @@
     <li>
       Wahrheitstabelle
       <ul>
-        <li>eindeutig pro Schaltung</li>
-        <li>Spalten: Eingabewerte, letzte Spalte: Ausgabe</li>
+        <li>immer eindeutig pro Schaltung</li>
+        <li>
+          Spalten: Eingabewerte, letzte Spalte: Ausgabe ebi entsprechender
+          Eingabe
+        </li>
         <li>Zeilen: Eingabemöglichkeiten(umgerechnet aus Binäreingabe)</li>
         <li>
           Darstellung in disjunktiver Normalform (DNF)
           <ol>
-            <li>ALle Zeilen mit 1 in Erebnisspalte</li>
+            <li>Alle Zeilen mit einer 1 in Erebnisspalte betrachten</li>
             <li>
-              Minterm/Konjunktion für Zeile erzeugen: Alle Variablen(Varibale
-              bie 1,Negation der Variable bei 0) der Zeile mit ^/AND verknüpfen
+              Minterm/Konjunktion für Zeile erzeugen: Alle Variablen (Variable
+              bei 1, Negation der Variable bei 0) der Zeile mit ^/AND verknüpfen
             </li>
             <li>Disjunktion: Alle Minterme mit v/OR verknüpfen</li>
             <li></li>
           </ol>
         </li>
         <li>
-          Darstellung in Konjunktiver Normalform (KNF)
+          Darstellung in konjunktiver Normalform (KNF)
           <ol>
-            <li>ALle Zeilen mit 1 in Erebnisspalte</li>
+            <li>Alle Zeilen mit einer 1 in Erebnisspalte betrachten</li>
             <li>
-              Maxterm/Disjunktion für Zeile erzeugen: Alle Variablen(Varibale
-              bie 1,Negation der Variable bei 0) der Zeile mit v/OR verknüpfen
+              Maxterm/Disjunktion für Zeile erzeugen: Alle Variablen (Variable
+              bei 1, Negation der Variable bei 0) der Zeile mit v/OR verknüpfen
             </li>
             <li>Konjunktion: Alle Maxterme mit ^/AND verknüpfen</li>
             <li></li>
@@ -48,41 +51,47 @@
         <li>
           Minimierung
           <ul>
+            <li>Sehen</li>
+            <li>
+              Bei Verknüpfungen, die nur in einer Variable unterschiedlich sind,
+              die Variable streichen
+            </li>
             <li>Wie in Mathe(Resolution)</li>
             <li>
-              KV-Diagramme
+              Am besten: KV-Diagramme
               <ol>
                 <li>Mintherme bilden</li>
                 <li>
-                  Mintherme in KV-Diagramm eintragen<(Jeweils 1 in Feld, was dem
-                  Therm entspricht),Strich mit Variable steht für 1
+                  Mintherme in KV-Diagramm eintragen(Jeweils 1 in Feld, was dem
+                  Therm entspricht), Strich mit Variable steht für 1 bei
+                  Variable
                 </li>
                 <li>
                   Blöcke suchen
                   <ul>
-                    <li>Möglichst groß (Überschneidungen ok)</li>
-                    <li>Größe nur 2er-Potenzen</li>
-                    <li>Nur Symmetrische Formen(Quadrate, Rechtecke)</li>
-                    <li>Auch über Ränder hinweg</li>
+                    <li>Möglichst groß (Überschneidungen sind erlaubt)</li>
+                    <li>Größe nur 2er-Potenzen (1,2,4,8,16,...)</li>
+                    <li>Nur Symmetrische Formen (Quadrate, Rechtecke)</li>
+                    <li>Auch über Ränder hinweg erlaubt</li>
                   </ul>
                 </li>
                 <li>
                   Ableiten von Thermen
                   <ul>
-                    <li>Pro Block ein Therm</li>
-                    <li>Alle Variablen, die von Block bedeckt werden</li>
+                    <li>Ein Block wird zu einem Therm</li>
+                    <li>Therm enthält alle Variablen</li>
                     <li>
-                      Wenn eine Varibale als Negation und in der normalen Form
-                      existiert, dann fällt sie weg
+                      Nur wenn eine Variable als Negation und in der normalen
+                      Form im Block existiert, dann fällt sie weg
                     </li>
                   </ul>
                 </li>
-                <li>Disjunktion der Therme</li>
+                <li>Disjunktion der Therme (v/OR)</li>
               </ol>
             </li>
             <li>
               Geht auch mit KNF, dann Maxtherme und 0en in KV Diagramm
-              betrachten und nachher Konjunktion
+              betrachten und nachher Konjunktion (^/AND)
             </li>
           </ul>
         </li>
@@ -91,10 +100,113 @@
     <li>
       Wichtige Schaltungen
       <ul>
-        <li>Comparator</li>
-        <li>Multiplexer/Demultiplexer</li>
-        <li>Halbaddierer->Volladdierer/Carry-Ripple-Addierer</li>
-        <li>ALU Anschauen</li>
+        <li>
+          Multiplexer
+          <ul>
+            <img class="klein" src="./../../../assets/Multiplexer.JPG" />
+            <li>Hat Signaleingänge, und Steuereingänge sowie einen Ausgang</li>
+            <li>
+              Gibt je nach Steuerungssignalen ein anderes Eingangssignal weiter
+            </li>
+          </ul>
+        </li>
+        <li>
+          Demultiplexer
+          <ul>
+            <img class="klein" src="./../../../assets/Demultiplexer.JPG" />
+            <li>Umkehrung von Multiplexer</li>
+            <li>
+              Hat einen Signaleingang, Steuereingänge sowie mehrere Ausgänge
+            </li>
+            <li>
+              Gibt je nach Steursignalen das Eingangssignal an einen anderen
+              Ausgang weiter
+            </li>
+          </ul>
+        </li>
+        <li>
+          Comparator
+          <ul>
+            <img class="klein" src="./../../../assets/Comparator.JPG" />
+            <img class="klein" src="./../../../assets/ComparatorRealisierung.JPG" />
+            <li>prüft zwei Binärzahlen auf größer/kleiner/gleich</li>
+          </ul>
+        </li>
+        <li>
+          Addierer
+          <ul>
+            <li>
+              Halbaddierer
+              <ul>
+                <img class="klein" src="./../../../assets/Halbaddierer.JPG" />
+                <img class="klein" src="./../../../assets/HalbaddiererRealisierung.JPG" />
+                <li>Addiert zwei Dualziffern</li>
+                <li>Gibt als Ergebnis Summenwert und Übertrag</li>
+              </ul>
+            </li>
+            <li>
+              Volladdierer
+              <ul>
+                <img class="klein" src="./../../../assets/Volladdierer.JPG" />
+                <img class="klein" src="./../../../assets/VolladdiererRealisisierung.JPG" />
+                <li>
+                  Addiert zwei Binärziffern unter Berücksichtigung eines
+                  Übertrags
+                </li>
+                <li>Ziffern und vorheriger Übertrag werden addiert</li>
+                <li>Verwendet zwei aneinandergereeihte Halbaddierer</li>
+              </ul>
+            </li>
+            <li>
+              Carry-Ripple-Addierer
+              <ul>
+                <img class="klein" src="./../../../assets/CarryRipple.JPG" />
+                <li>Aneinanderreihung mehrerer Halbaddierer</li>
+                <li>Carry Bit komplett von links nach rechts weitergegeben</li>
+              </ul>
+            </li>
+            <li>
+              Subtrahierer
+              <ul>
+                <img class="klein" src="./../../../assets/Subtrahierer.JPG" />
+                <li>x-y=x+(-y)</li>
+                <li>Mit Zweierkomoplement addieren</li>
+                <li>
+                  Negationsstufe vor Addierwerk: Carry=1 und umdrehen von
+                  Eingabe
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Barrel-Shifter
+          <ul>
+            <img class="klein" src="./../../../assets/BarrelShifter.JPG" />
+            <li>Verschiebung eines WOrtes um mehrere Bitpositionen</li>
+            <li>Umsetzung: Mehrere Multiplexer aneineandergereiht</li>
+            <li>freiwerdende Stellen zB mit 0 aufgefüllt</li>
+            <li>
+              Steuerleitungen entscheiden Verschieberichtung und Anzahl der
+              Stellen
+            </li>
+          </ul>
+        </li>
+        <li>
+          Arithmetisch-logische Einheit (ALU)
+          <ul>
+            <img class="klein" src="./../../../assets/ALU.JPG" />
+            <img class="klein" src="./../../../assets/ALURealisierung.JPG" />
+
+            <li>
+              Zusammengebaut aus mehreren arithmetischen und logischen
+              Operationen
+            </li>
+            <li>Verknüpfung der Eingänge</li>
+            <li>Befehlsdecoder aktiviert etsprechende Operation</li>
+            <li>Multiplexer steuert gewünschtes Ergebnis an</li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
