@@ -1,0 +1,250 @@
+<span class="breadcrumb" routerLink="/">Themenauswahl</span> > Linux
+<h3>Linux</h3>
+<h4>Inhalte</h4>
+<div class="Inhalte">
+  <ul>
+    <li>
+      Befehle
+      <ul>
+        <li>
+          ls : Inhalt eines Verzeichnisses auflisten
+          <ul>
+            <li>-l : detailliert</li>
+            <li>-a/--all: auch versteckte</li>
+            <li>-R : rekursive Ausgabe aller Unterverzeichnisse</li>
+            <li>-h/--help : Hilfsinformationen</li>
+            <li>--color : farbige Ausgabe</li>
+            <li>Spezifikationen können kombiniert werden</li>
+          </ul>
+        </li>
+        <li>cp - kopiert Dateien/Verzeichnisse</li>
+        <li>mv - vershiebt Dateien/Verzeichnisse</li>
+        <li>rm - löscht Dateien/Verzeichnisse</li>
+        <li>
+          touch - erzeugt leere Datei/aktualisisert Zeitstempel, wenn Dateiname
+          schon existiert
+        </li>
+        <li>nano/vi/emacs - Editoren zur Bearbeitung von Dateien</li>
+        <li>less - Ausgabe von Dateien uf Bildschirm</li>
+        <li>pwd - gibt Namen des aktuellen Arbeitsverzeichnisses</li>
+        <li>cd - Wechsel des Arbeitsverzeichnisses</li>
+        <li>mkdir - Verzeichnis erzeugen</li>
+        <li>rmdir - Verzeichnis löschen</li>
+        <li>
+          ps - Prozesse auflisten
+          <ul>
+            <li>-a/all - alle Prozesse( die an Terminal gebunden sind</li>
+            <li>-l/long - Langformat</li>
+            <li>-f vollständige Ausgabe</li>
+            <li>-F - noch vollstängigere Ausgabe</li>
+            <li>-x - Auch Prozesse, die nicht an Terminal gebunden sind</li>
+          </ul>
+        </li>
+        <li>man Befehl- Infomrationen zu Befehl</li>
+        <li>file - Typ der Datei</li>
+        <li>kill/Ctrl+C - Abbruch eines Prozesses</li>
+        <li>who - angemeldeter Benutzer</li>
+        <li>alias - Name für wiederkehrenden Befehl zuordnen</li>
+        <li>echo - Ausgabe der Argumente</li>
+        <li>wc : word Count/Anzahl Wörter</li>
+        <li>head : AUsgabe erste Zeile</li>
+        <li>
+          History:
+          <ul>
+            <li>history : Ale Befehle mit Nummer</li>
+            <li>!Nummer : Befehl mit der Nummer nochmal</li>
+            <li>!text Letzter Befehl, der mit text beginnt nochmal</li>
+          </ul>
+        </li>
+        <li>
+          Wildcards:
+          <ul>
+            <li>* Beliebige Zeichenkette</li>
+            <li>? Beliebiges einzelnes Zeichen</li>
+            <li>[0-9] Beliebiges Zeichen Zwischen 0 und 9</li>
+          </ul>
+        </li>
+        <li>
+          Quotierung:
+          <ul>
+            <li>\ Maskieren des nächsten Zeichen</li>
+            <li>'...' Maskieren aller eingeschlossenen Zeichen</li>
+          </ul>
+        </li>
+        <li>
+          Umlenkung Ein-/Ausgabe
+          <ul>
+            <li>befehl >(Andersum) Datei : Umleitung Standardeingabe</li>
+            <li>Befehl > Datei : Umleitungs Standardausgbae, Überschreiben</li>
+            <li>Befehl >> Datei : Umleitung Standardausgabe, Anhängen</li>
+            <li>Befehl 2> Datei : Umleitung Standardfehlerausgabe</li>
+            <li>
+              Verkettung: Pipes | : Standardausgabe des ersten Kommandos auf
+              Standardeingabe des zweiten
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Dateiattribute
+      <ul>
+        <li>
+          Berechtigungen
+          <ul>
+            <li>
+              Zugriffsrechte für Benutzerklassen unterschiedlich
+              <ul>
+                <li>User -- Besitzer</li>
+                <li>Group - Besitzende Gruppe</li>
+                <li>Others - Restliche Welt</li>
+              </ul>
+            </li>
+            <li>
+              Verschiedene Rechte:
+              <ul>
+                <li>r - Read(Lesen/Verzeichnis kann angezeigt werden)</li>
+                <li>w - Write(Schreiben/Neue Dateien/Löschen)</li>
+                <li>x - Execute(Ausführen/Öffnen bei Ordnern)</li>
+              </ul>
+            </li>
+            <li>
+              Schreibweisen/Zuweisung
+              <ul>
+                <li>
+                  Dreistellige Oktalzahl
+                  <ul>
+                    <li>
+                      Werte für Benutzerklassen: Binärzahlen nach rwx (Bsp. rx =
+                      101)
+                    </li>
+                    <li>
+                      Werte für Benutzerklassen als Oktalzahlzahlen (Bsp. 101 =
+                      4+0+1 = 5)
+                    </li>
+                    <li>
+                      Werte für alle Benutzerklassen hintereinanderschreiben:
+                      user, group, others (Bsp. U:5,G:1,O:0 = 510
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Symbolische Angabe
+                  <ul>
+                    <li>
+                      who operator permission
+                      <ul>
+                        <li>who: u(User), g(Group), o(Others), a(all)</li>
+                        <li>
+                          operator: +(hinzufügen), -(entfernen), =(gleichsetzen)
+                        </li>
+                        <li>permission: r(read), w(write), x(execute)</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              SUID-Bit(Set User Id Bit)
+              <ul>
+                <li>Bei Programmen</li>
+                <li>
+                  Programm wird mit Rechten des Besizers ausgeführt (Nicht wie
+                  Ausführer)
+                </li>
+                <li>Oktalwert: 4000, symbolisch: s bei User</li>
+              </ul>
+            </li>
+            <li>
+              SGID-Bit (Set Group Id Bit)
+              <ul>
+                <li>Bei Programmen: Wird mit rechten der Gruppe ausgeführt</li>
+                <li>
+                  Bei Verzeichnissen: Wird mit Gruppe des Verzeichnisses
+                  erstellt
+                </li>
+                <li>Oktalwert: 2000, sy,bolisch: s bei group</li>
+              </ul>
+            </li>
+            <li>
+              Sticky Bit
+              <ul>
+                <li>
+                  Verzeichnis: nur Eigentümer einer Datei darf Datei löschen
+                </li>
+                <li>Oktalwert: 1000, symbolisch: t</li>
+              </ul>
+            </li>
+            <li>
+              Befehle:
+              <ul>
+                <li>chmod - Ändern der Zugriffsrechte</li>
+                <li>chown - Ändern des Besitzers</li>
+                <li>chgroup - Ändern der Gruppe</li>
+                <li>
+                  umask - Maske mit Zugriffsrechten setzen
+                  <ol>
+                    <li>
+                      Rechte, wie man sie haben will: zB. umask: 027 = 000 010
+                      111
+                    </li>
+                    <li>
+                      bitweises NICHT aus Standard umask: 111 101 000 = 750
+                    </li>
+                    <li>
+                      Wird bitweise UND mit Default: zB. UND 666 => 110 100 000
+                      = 640
+                      <ul>
+                        <li>Default für Dateien: 110 110 110 = 666</li>
+                        <li>Default für Verzeichnisse: 111 111 111 = 777</li>
+                      </ul>
+                    </li>
+                  </ol>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Prozesskontrolle
+      <ul>
+        <li>Prozess im Vordergrund blockiert andere Prozesse</li>
+        <li>Prozess im Hintergrund starten: & anhängen an Aufruf</li>
+        <li>pstree - Prozessbaum anzeigen</li>
+        <li>ctrl-Z - Prozess anhalten</li>
+        <li>bg/fg - Prozess in Hintergrun/Vordergrund bringen</li>
+        <li>jobs - Ausgabe der Job von Shell gestartet</li>
+      </ul>
+    </li>
+    <li>
+      Umgebungsvariablen
+      <ul>
+        <li>
+          Bearbeiten
+          <ul>
+            <li>VARIABLE=INHALT - Setzen der Umgebungsvariable</li>
+            <li>echo $VARIABLE - Ausgabe von VARIABLE</li>
+            <li>printenv - Anzeigen der Umgebungsvariablen</li>
+            <li>unset VARIABLE - Löschen von VARIABLE</li>
+            <li>export VARIABLE - Bekannt machen für Kindprozesse der Shell</li>
+          </ul>
+        </li>
+        <li>PATH - Befehlssuchpfad</li>
+        <li>HOME - Home-Verzeichnis</li>
+        <li>TERM - Terminal-Definition</li>
+        <li>PS1 - Login Prompt</li>
+        <li>PWD - Aktuelles Verzeichnis</li>
+        <li>OLDPWD - Vorheriges aktuelles Verzeichnis</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<h4>Zettel</h4>
+<div class="zettel">
+  <ul>
+    <li>Befehle und Erklärungen</li>
+  </ul>
+</div>

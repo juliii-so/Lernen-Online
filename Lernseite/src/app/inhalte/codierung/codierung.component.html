@@ -1,0 +1,113 @@
+<span class="breadcrumb" routerLink="/">Themenauswahl</span> > Codierung
+<h3>Codierung</h3>
+<h3>Inhalte</h3>
+<div class="Inhalte">
+  <ul>
+    <li>Anwendung von Umrechnungen</li>
+    <li>
+      Verstehen von Negationen
+      <ul>
+        <li>
+          Translationsdarstellung:
+          <ul>
+            <li>Es gibt keine negativen Zahlen</li>
+            <li>
+              Stattdessen wird X+T dargestellt - Traslation/Bias wird
+              hinzugefügt
+            </li>
+            <li>
+              T=1/2*B oder T=1/2*B-1 (Je nachdem, ob 0 positiv oder negativ sein
+              Soll)
+            </li>
+            <li>
+              Ergibt Zahlenraum: -2^n-1 ... 2^n-1 -1 oder -(2^n-1 -1) ... 2^n-1
+            </li>
+            <li>Mit 4 Bit kann</li>
+          </ul>
+        </li>
+        <li>
+          Komplementdarstellung
+          <ul>
+            <li>
+              Einerkomplement
+              <ul>
+                <li>Negative Zahlen werden durch Invertierung dargstellt</li>
+              </ul>
+            </li>
+            <li>
+              Zweierkomplement
+              <ul>
+                <li>
+                  negative Zahlen werden durch Invertierung und +1 Dargstellt
+                </li>
+                <li>Keine Doppelte 0 - Größere Zahlenraum</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Reele Zahlen
+      <ul>
+        <li>
+          Festkommadarstellung:
+          <ul>
+            <li>
+              Vorkommateil: (ganz Normal) Zahl/Basis=Neue Zahl, Rest wird von
+              unten nach oben gelesen
+            </li>
+            <li>
+              Nachkommateil: Zahl*Basis=Ergebnis, bis neue Zahl 0,
+              Vorkommastelle von Ergebnis ist Binär von oben nach unten,
+              0,Nachkommastelle wird neue Zahl
+            </li>
+            <li>
+              Kann mit festem Skalierungsfaktor mit Kommaverschiebung als
+              Ganzzahl gespeichert werden
+            </li>
+            <li>Strichrechnung normal, Punktrechnung braucht Korrektur</li>
+          </ul>
+        </li>
+        <li>
+          Gleitkommazahlen(IEEE-Standard)
+          <ul>
+            <li>einfache Genauigkeit: float (32Bit)</li>
+            <li>doppelte Genauigkeit: double (64Bit)</li>
+            <li>
+              Halblogarithmische Zahlendarstellung: X0 Xs * B^E
+              <ul>
+                <li>Xs= Mantisse(Signifikant)</li>
+                <li>B= Basis (meist 10)</li>
+                <li>E= Exponent(ganzzahlig)</li>
+              </ul>
+            </li>
+            <li>
+              Rechnerinterne Form: S-C-M
+              <ul>
+                <li>S = Vorzeichen</li>
+                <li>
+                  C = Charakteristik (Eponent in Translationsdarstellung: C=E+T
+                  - T=2^(r-1)-1
+                </li>
+                <li>
+                  M = normalisierte Mantisse (ohne Vorzeichen)(Normalisiert:
+                  Erste Vorkommazhla ist erste ziffer ungleich 0 ) (optimiert:
+                  Vorkommzahl ist 1, kann dann weggelassen werden)
+                </li>
+                <li>Basis ist 2</li>
+                <li>X0 (-1)^S*1,M*2^(C-T)</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<h3>Zettel</h3>
+<div class="zettel">
+  <ul>
+    <li>IEEE Umwandlung</li>
+  </ul>
+</div>

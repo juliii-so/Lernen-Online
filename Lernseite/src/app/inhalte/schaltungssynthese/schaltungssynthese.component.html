@@ -1,0 +1,109 @@
+<span class="breadcrumb" routerLink="/">Themenauswahl</span> > Schaltungssyntese
+<h3>Schaltungssyntese</h3>
+<h3>Inhalte</h3>
+<div class="Inhalte">
+  <ul>
+    <li>
+      Schaltalgebra
+
+      <p>
+        <img class="klein" src="./../../../assets/Konjunktion.JPG" />
+        <img class="klein" src="./../../../assets/Disjunktion.JPG" />
+      </p>
+      <p>
+        <img class="klein" src="./../../../assets/XOR.JPG" />
+        <img class="klein" src="./../../../assets/Negation.JPG" />
+      </p>
+    </li>
+    <li>
+      Wahrheitstabelle
+      <ul>
+        <li>eindeutig pro Schaltung</li>
+        <li>Spalten: Eingabewerte, letzte Spalte: Ausgabe</li>
+        <li>Zeilen: Eingabemöglichkeiten(umgerechnet aus Binäreingabe)</li>
+        <li>
+          Darstellung in disjunktiver Normalform (DNF)
+          <ol>
+            <li>ALle Zeilen mit 1 in Erebnisspalte</li>
+            <li>
+              Minterm/Konjunktion für Zeile erzeugen: Alle Variablen(Varibale
+              bie 1,Negation der Variable bei 0) der Zeile mit ^/AND verknüpfen
+            </li>
+            <li>Disjunktion: Alle Minterme mit v/OR verknüpfen</li>
+            <li></li>
+          </ol>
+        </li>
+        <li>
+          Darstellung in Konjunktiver Normalform (KNF)
+          <ol>
+            <li>ALle Zeilen mit 1 in Erebnisspalte</li>
+            <li>
+              Maxterm/Disjunktion für Zeile erzeugen: Alle Variablen(Varibale
+              bie 1,Negation der Variable bei 0) der Zeile mit v/OR verknüpfen
+            </li>
+            <li>Konjunktion: Alle Maxterme mit ^/AND verknüpfen</li>
+            <li></li>
+          </ol>
+        </li>
+        <li>
+          Minimierung
+          <ul>
+            <li>Wie in Mathe(Resolution)</li>
+            <li>
+              KV-Diagramme
+              <ol>
+                <li>Mintherme bilden</li>
+                <li>
+                  Mintherme in KV-Diagramm eintragen<(Jeweils 1 in Feld, was dem
+                  Therm entspricht),Strich mit Variable steht für 1
+                </li>
+                <li>
+                  Blöcke suchen
+                  <ul>
+                    <li>Möglichst groß (Überschneidungen ok)</li>
+                    <li>Größe nur 2er-Potenzen</li>
+                    <li>Nur Symmetrische Formen(Quadrate, Rechtecke)</li>
+                    <li>Auch über Ränder hinweg</li>
+                  </ul>
+                </li>
+                <li>
+                  Ableiten von Thermen
+                  <ul>
+                    <li>Pro Block ein Therm</li>
+                    <li>Alle Variablen, die von Block bedeckt werden</li>
+                    <li>
+                      Wenn eine Varibale als Negation und in der normalen Form
+                      existiert, dann fällt sie weg
+                    </li>
+                  </ul>
+                </li>
+                <li>Disjunktion der Therme</li>
+              </ol>
+            </li>
+            <li>
+              Geht auch mit KNF, dann Maxtherme und 0en in KV Diagramm
+              betrachten und nachher Konjunktion
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Wichtige Schaltungen
+      <ul>
+        <li>Comparator</li>
+        <li>Multiplexer/Demultiplexer</li>
+        <li>Halbaddierer->Volladdierer/Carry-Ripple-Addierer</li>
+        <li>ALU Anschauen</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<h3>Zettel</h3>
+<div class="zettel">
+  <ul>
+    <li>KNF/DNF</li>
+    <li>KV Diagramme für 1-4 Variablen</li>
+    <li>Gatter Arten</li>
+  </ul>
+</div>

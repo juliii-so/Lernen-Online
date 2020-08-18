@@ -1,0 +1,126 @@
+<span class="breadcrumb" routerLink="/">Themenauswahl</span> > Speicher
+<h3>Speicher</h3>
+<div class="Inhalte">
+  <ul>
+    <li>
+      Speicherzuweisung
+      <ul>
+        <li>Statisch</li>
+        <li>
+          Dynamisch
+          <ul>
+            <li>
+              First Fit-Von vorne schauen, erste mindestens passend große Lücke
+            </li>
+            <li>Best Fit-Lücke mit kleinstem Verschnitt</li>
+            <li>Worst Fit-Lücke mit größtem Verschnitt</li>
+            <li>
+              Next Fit-Nächste von zuletzt betrachteter Lücke, die mindestens
+              passend groß ist
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Virtueller Speicher
+      <ul>
+        <li>
+          Konzept
+          <ul>
+            <li>Protected</li>
+            <li>Speicherschutz- Sicherheit+ Stabilität</li>
+            <li>
+              Jeder Prozess in abgeschotteter Kopie des physikalischen
+              Adressraums
+            </li>
+            <li>
+              Prozesse können nur auf eigenen virtuellen Speicher zugreifen
+            </li>
+            <li>
+              Memory Management Unit(MMU)
+              <ul>
+                <li>
+                  Stellt Adressbereiche im Real Mode für Prozesse bereit
+                </li>
+                <li>
+                  CPU übersetzt physikalische Speicheradressn mur ´´ítCPU
+                </li>
+              </ul>
+            </li>
+            <li>
+              eigener Adressraum
+              <ul>
+                <li>nach Bedarf erzeugt/gelöscht</li>
+                <li>sind geschützt</li>
+                <li>
+                  Kein Prozess kann ohne Vereinbarung auf Adressraum von anderen
+                  Prozessen zugreifen
+                </li>
+                <li>
+                  Mapping= Abbilden des virtuellen auf physischen Speicher
+                </li>
+                <li>Hauptspeicher wird besser ausgenutzt</li>
+                <li>
+                  Prozesse müssen nicht am Stück im Hauptspeicher liegen
+                </li>
+                <li>Fragmentierung ist kein Problem</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Paging (Adressumwandluung)
+          <ul>
+            <li>
+              Einstufig
+              <ul>
+                <li>Virtuelle Adresse zeigt auf Seitentabelle</li>
+                <li>
+                  Eintrag in Seitentabelle konkat Virtuelle Adresse ergeben
+                  Physische Adresse
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Segmentierung (Adressumwandlung)
+          <ul>
+            <li>Virtuelle Adresse Zeigt auf Segmenttabelle</li>
+            <li>
+              Eintrag aus Segmenttabelle plus Virtuelle Adresse ergibt physische
+              Adresse
+            </li>
+          </ul>
+        </li>
+        <li>Kombination aus Paging und Segmentierung</li>
+        <li>
+          Swapping
+          <ul>
+            <li>
+              Virtueller SPeicher kann größer sein als realer Speicher
+            </li>
+            <li>Daten werden asugelagert/verdrängt auf SDD/HDD</li>
+            <li>
+              Seitenersetzungsstrategien:
+              <ul>
+                <li>Not recently used</li>
+                <li>Least recently used</li>
+                <li>First in First out</li>
+                <li>Clock/Second chance</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<h3>Zettel</h3>
+<div class="zettel">
+  <ul>
+    <li>Seitenersetzungsstrategien</li>
+    <li>Beispiel Adressumwandlung</li>
+  </ul>
+</div>

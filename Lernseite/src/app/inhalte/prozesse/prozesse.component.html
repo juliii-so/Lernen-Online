@@ -1,0 +1,119 @@
+<span class="breadcrumb" routerLink="/">Themenauswahl</span> > Prozesse
+<h3>Prozesse</h3>
+<h3>Inhalte</h3>
+<div class="Inhalte">
+  <ul>
+    <li>Prozesstabelle zeigt auf Prozesskontrollblöcke</li>
+    <li>
+      Prozesskontrollblock
+      <ul>
+        <li>ID</li>
+        <li>ID Elternprozess</li>
+        <li>Zustand</li>
+        <li>Inhalt Prozessorregister</li>
+        <li>offene Dateien</li>
+        <li>Peripheriegeräte</li>
+        <li>Laufzeit</li>
+        <li>Speicherbereiche</li>
+        <li>Priorität</li>
+      </ul>
+    </li>
+    <li>
+      Prozesswechsel
+      <ul>
+        <li>Dispatcher</li>
+        <li>
+          Scheduler
+          <ul>
+            <li>
+              nicht päembtiv(nicht verdränged)
+              <ul>
+                <li>Prozess behält Kontrolle, bis fertig</li>
+                <li>
+                  Problem: Blockieren des Prozesses, wichtige Prozesse kommen
+                  nicht dran
+                </li>
+              </ul>
+            </li>
+            <li>
+              präembtiv (verdränged)
+              <ul>
+                <li>CPU kann vor Fertigstellung entzogen werden</li>
+                <li>pasuieren, bis wieder CPU zugeteilt</li>
+                <li>Problem: Mehr Kontrolle nötig(Overhead)</li>
+                <li>Vorteil: Prioritäten beachtet</li>
+              </ul>
+            </li>
+            <li>
+              Verfahren
+              <ul>
+                <li>First Comes First Serve</li>
+                <li>Shortest Process next</li>
+                <li>Round-Robin</li>
+                <li>Prioritäten</li>
+                <li>Multi-Level Scheduling</li>
+                <li>Multi-Level Feedback Scheduling</li>
+                <li>Linux Scheduling</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Prozesslebenszyklus
+      <ul>
+        <li>Created -Start dann Ready</li>
+        <li>Ready - zur Ausführung gewählt dann Running</li>
+        <li>
+          Running - Zeit abgelaufen, dann Ready, oder Systemaufruf, dann bocked
+          oder beendet, dann terminated
+        </li>
+        <li>Blocked - Systemaufruf beednet, dann ready</li>
+        <li>terminated - Ende</li>
+      </ul>
+    </li>
+    <li>
+      Przesserzeugung
+      <ul>
+        <li>
+          Windows
+          <ul>
+            <li>
+              Prozessvergabelung - fork
+              <ul>
+                <li>Prozess wird dupliziert</li>
+                <li>erzeugender Prozess bleibt erhalten</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Unix
+          <ul>
+            <li>
+              Prozessverkettung - exec
+              <ul>
+                <li>ein Prozess erzeugt einen neuen</li>
+                <li>erzeugender Prozess beendet sich</li>
+              </ul>
+            </li>
+            <li>
+              Prozesserzeugung
+              <ul>
+                <li>Prozess dupliziert sich (fork)</li>
+                <li>neuer Prozess ersetzt sich selber mit exec</li>
+                <li>
+                  Alter Prozess bleibt erhalten und komplett neuer Prozess
+                  existiert auch
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<h3>Zettel</h3>
+<div class="zettel"></div>

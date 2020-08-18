@@ -1,1 +1,79 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+  background-image: url("./assets/wallpaper.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+body {
+  background-color: rgb(24, 47, 119);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  width: auto;
+  max-width: 600px;
+  min-width: 200px;
+  margin: auto;
+  padding: 5mm;
+}
+.zettel {
+  font-family: cursive;
+}
+.Inhalte {
+  font-family: monospace;
+}
+h3 {
+  color: rgb(8, 8, 73);
+  background-color: rgb(95, 180, 250);
+  padding: 2px;
+}
+h2,
+h1 {
+  background-color: rgb(19, 29, 49);
+  color: rgb(95, 180, 250);
+}
+a,
+a:visited {
+  display: block;
+  width: 150px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  background-color: rgb(171, 211, 248);
+  padding: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: black;
+}
+a:hover {
+  color: rgb(171, 211, 248);
+  background-color: black;
+  border-color: rgb(171, 211, 248);
+}
+a:focus,
+a:active {
+  color: blue;
+  background-color: black;
+  border-color: blue;
+}
+span.breadcrumb {
+  display: inline;
+  font-weight: bold;
+  color: white;
+  background-color: none;
+  border-style: none;
+}
+span.breadcrumb:hover {
+  color: rgb(9, 9, 71);
+}
+span.breadcrumb:active,
+span.breadcrumb:focus {
+  color: black;
+}
+img {
+  width: 100%;
+  border: solid 2px rgb(121, 193, 221);
+  border-radius: 10px;
+}
+img.klein {
+  height: 250px;
+ width: auto;
+}
