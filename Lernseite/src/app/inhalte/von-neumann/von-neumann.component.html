@@ -3,10 +3,57 @@
 <div class="Inhalte">
   <ul>
     <li>
-      Prizipien
-      <ul>
+      Prinzipien
+      <ol>
         <li>
-          Zyklus
+          4 Werke
+          <ol>
+            <li>Rechenwerk - arithemtishe/logische Funktionen</li>
+            <li>Leitwerk - Interpretiert Programme</li>
+            <li>
+              Speicher - Hauptspeicher/Arbeitsspeicher für Programme/Daten
+            </li>
+            <li>
+              Ein-/Ausgabewerk - Kommuniziert mit Umwelt, Langzeitspeicher
+            </li>
+          </ol>
+        </li>
+        <li>
+          Programmgesteuert - Daten + Befehle(von Befehlsinterpreter
+          interpretiert) -> Ergebnisse
+        </li>
+        <li>Programme und Daten im selben Speicher, modifizierbar</li>
+        <li>Hauptspeicher mit gleich großen Adresszellen</li>
+        <li>Programm = Folge von Befehlen (Sequentiell)</li>
+        <li>
+          Abweichungen von Sequenzieller Ausführung durch:
+          <ul>
+            <li>Sprung an bestimmte Zelle</li>
+            <li>von Auswertung der gespeicherten Werte abhängig</li>
+          </ul>
+        </li>
+        <li>Duale Darstellung von Zahlen</li>
+      </ol>
+    </li>
+    <li>
+      Von Neumann heute
+      <ul>
+        <li>weitestgehend unverändert</li>
+        <li>Komponenten mehrfach für Parallelverarbeitung (zB Rechenwerk)</li>
+        <li>Sequenzielle Ausführung durch Nebenläufigkeit ergänzt</li>
+        <li>viertsufige Speicherhierarchie: Haupt- und Sekundärspeicher</li>
+        <li>
+          Nur auf unterster Ebene verschiedene Speicher für Daten und Programme
+          -> gleichzeitiger Zugriff über verschiedene Busse
+        </li>
+      </ul>
+    </li>
+    <li>
+      Von-Neumann Architektur
+      <ul>
+        <img src="./assets/VonNeumann.JPG" />
+        <li>
+          Von-Neumann-Zyklus
           <ul>
             <li>FETCH: Befehl aus Speicher in Befehlsregister</li>
             <li>
@@ -21,57 +68,221 @@
             <li>WRITE BACK: Ergebnis in Hauptspeicher/an Ausgabegerät</li>
           </ul>
         </li>
-      </ul>
-    </li>
-    <li>Architektur</li>
-    <li>Funktionsweise</li>
-    <li>Bussysteme</li>
-    <li>Rechenwerk(ALU) Steuerwerk</li>
-    <li>
-      Ein-/Ausgabe
-      <ul>
         <li>
-          Einlesen von Daten:
-          <ul>
-            <li>Busy Waiting</li>
-            <li>Interrupt gesteuert</li>
-            <li>Direct Memory Access</li>
-          </ul>
-        </li>
-        <li>Zeichenbasiert/Blockbasiert</li>
-        <li>Zugriffsarten</li>
-      </ul>
-    </li>
-    <li>
-      Speicher
-      <ul>
-        <li>
-          Pyramide
-          <ul>
-            <li>hohe Kosten</li>
-            <li>schneller Zugriff</li>
-            <li>geringe Kapazität</li>
-          </ul>
-          <ol>
-            <li>I Register</li>
-            <li>I interner Cache</li>
-            <li>I externer Cache</li>
-            <li>I Hauptspeicher(RAM)</li>
-            <li>II SSD/ CompactFlash</li>
-            <li>II Festplatten</li>
-            <li>III Optische Laufwerke</li>
-            <li>III Magnetoptische Laufwerke</li>
-            <li>III Magnetbänder</li>
-          </ol>
-        </li>
-        <li>
-          Caching
+          Bussysteme
           <ul>
             <li>
-              Write-Trough: Sofoert an tiefere Schichten weitergegeben
+              Datenbus
+              <ul>
+                <li>In beide Richtungen</li>
+                <li>
+                  Überträgt Daten zwischen CPU, Arbeitsspeicher und Peripherie
+                </li>
+                <li>
+                  Anzahl der Datenbusleitungen legt Übertragungsgeschiwindigkeit
+                  der Bytes pro Takt fest - Meist = größe des Arbeitsregister im
+                  Rechenwerk (meist 64 Bits)
+                </li>
+              </ul>
             </li>
             <li>
-              Write-Back: Erst weitergegeben, wenn aus Cache verdrängt
+              Adressbus
+              <ul>
+                <li>Übertragt Speicheradressen</li>
+                <li>
+                  Speicheradressen und Peripherie-Geräte werden angesprochen
+                </li>
+                <li>
+                  Anzahl Busleitungen = maximale Anzahl Speicheradressen - 32
+                  Leitungen -> 32 Bit Lange Adressen -> 4GB Speicher
+                </li>
+              </ul>
+            </li>
+            <li>
+              Steuerbus
+              <ul>
+                <li>Überträgt Kommandos von CPU an Peripherie-Geräte</li>
+                <li>
+                  Komponenten werden von Adressbus agesprochen und über
+                  Steuerbus angewiesen
+                </li>
+                <li>Enthält auch Interrupt-Leitungen für I-/O-Geräte</li>
+                <li>Bandbreite: Meist 10 Leitungen</li>
+              </ul>
+            </li>
+            <li>
+              Moderne Entwicklung
+              <ul>
+                <li>Geräte nicht mehr direkt mit CPU verbunden</li>
+                <li>Chipsatz wird in CPU verlagert</li>
+                <li>verschiedene serielle und parallele Bussysteme</li>
+                <li>Controller als Vermittler zwischen Gerät und CPU</li>
+                <img src="./assets/Bussysteme.JPG" />
+                <li>
+                  Northbridge
+                  <ul>
+                    <li>Dicht an CPU</li>
+                    <li>Schnelle Datenübertragung</li>
+                    <li>Anbindung Hauptspeicher und Grafikkarte an CPU</li>
+                  </ul>
+                </li>
+                <li>
+                  Southbridge
+                  <ul>
+                    <li>langsamere Verbindungen</li>
+                  </ul>
+                </li>
+                <li>
+                  Front-Side-Bus (FSB)
+                  <ul>
+                    <li>Bus zwischen CPU und Chipsatz</li>
+                    <li>Enthält Adressbus, Datenbus und Steuserbus</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ein-/Ausgabe
+          <ul>
+            <li>
+              Einlesen von Daten:
+              <ul>
+                <li>
+                  Busy Waiting
+                  <ul>
+                    <li>
+                      Treiber sendet ANfrage und wartet in Endlos-Schleife, bis
+                      Daten da sind
+                    </li>
+                    <li>+ Keine zusätzliche Hardware</li>
+                    <li>- Belastet CPU</li>
+                  </ul>
+                </li>
+                <li>
+                  Interrupt gesteuert
+                  <ul>
+                    <li>
+                      Man braucht: Interrupt-COntroller und Leitungen im
+                      Steuerbus für Interrupt
+                    </li>
+                    <li>Treiber sendet Aufgabe und schläft</li>
+                    <li>Interrupt weckt Treiber wieder auf</li>
+                    <li>+ CPU ist nicht blockiert</li>
+                    <li>- Zusätzliche Hardware nötig</li>
+                  </ul>
+                </li>
+                <li>
+                  Direct Memory Access
+                  <ul>
+                    <li>Man braucht: DMA-Controller</li>
+                    <li>
+                      Daten direkt zwischen Arbeitsspeicher und I-/O-Gerät
+                      übertragen
+                    </li>
+                    <li>zB HDD/SSD, Soundkarte, Netzwerkkarte</li>
+                    <li>Nach Übertragung wird Interrupt ausgelöst</li>
+                    <li>+ Entlastung der</li>
+                    <li>
+                      - Zusätzliche Hardware(DMA-Controller) - In Chipsatz
+                      integriert
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Zeichenbasiert - Einzelne Zeichen direkt kommunniziert(zB Maus,
+              Tastatur, Drucker)
+            </li>
+            <li>
+              Blockorientiert - Datenübertragung erst nach Block (zB Festplatte,
+              SSD, Laufwerke), Unterstützen meist Direct Memory Access (DMA) -
+              Daten ohne CPU übertragen
+            </li>
+            <li>
+              Daten lesen:
+              <ol>
+                <li>Prozess fordert von CPU Daten von Festplatte</li>
+                <li>CPU schickt mit Treiber einen I-/O-Befehl an Controller</li>
+                <li>Controller suchte Daten</li>
+                <li>Prozess erhält Daten</li>
+              </ol>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Speicher
+          <ul>
+            <li>
+              Pyramide
+              <ul>
+                <li>hohe Kosten</li>
+                <li>schneller Zugriff</li>
+                <li>geringe Kapazität</li>
+              </ul>
+              <ol>
+                <li>I Register</li>
+                <li>I interner Cache</li>
+                <li>I externer Cache</li>
+                <li>I Hauptspeicher(RAM)</li>
+                <li>II SSD/ CompactFlash</li>
+                <li>II Festplatten</li>
+                <li>III Optische Laufwerke</li>
+                <li>III Magnetoptische Laufwerke</li>
+                <li>III Magnetbänder</li>
+              </ol>
+              <ul>
+                <li>
+                  Write-Trough:
+                  <ul>
+                    <li>Sofort an tiefere Schichten weitergegeben</li>
+                    <li>+ Konsistenz</li>
+                    <li>- Geschwindigkeit</li>
+                  </ul>
+                </li>
+                <li>
+                  Write-Back:
+                  <ul>
+                    <li>Erst weitergegeben, wenn aus Cache verdrängt</li>
+                    <li>+ Geschwindigkeit</li>
+                    <li>- Änderungen bei Systemausfall verloren</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Register
+              <ul>
+                <li>Daten, auf die CPU direkt zugreifen kann</li>
+                <li>Genauso schnell wie CPU</li>
+                <li>Datenregister - Operanden für ALU und deren Resultate</li>
+                <li>
+                  Adressregister - Speicheradressen von Operanden und Befehlen
+                </li>
+                <li>Befehlszähler - Speicheradresse des nächsten Befehls</li>
+                <li>Befehlsreigster - sktueller Befehl</li>
+                <li>Stapelregister - Speicheradresse am Ende des Stacks</li>
+              </ul>
+            </li>
+            <li>
+              Caching
+              <ul>
+                <li>Kopien von Teilen des Arbeitsspeichers</li>
+                <li>Beschleunigung von Datenzugriff</li>
+                <li>
+                  Verschiedene Level
+                  <ul>
+                    <img src="./assets/Cache.JPG" />
+                    <li>First Level Chache - In CPU integriert (4-256kB)</li>
+                    <li>
+                      Second Level Cache - langsamer und größer (256kB-4MB)
+                    </li>
+                    <li>Third Level Cache - Außerhalb CPU (1MB-16MB)</li>
+                  </ul>
+                </li>
+              </ul>
             </li>
           </ul>
         </li>
@@ -80,4 +291,13 @@
   </ul>
 </div>
 <h3>Zettel</h3>
-<div class="zettel"></div>
+<div class="zettel">
+  <ul>
+    <li>
+      Prinzipien
+    </li>
+    <li>Architektur</li>
+    <li>Busse</li>
+    <li>Ein und Ausgabe</li>
+  </ul>
+</div>
