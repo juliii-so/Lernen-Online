@@ -2,65 +2,286 @@
 <h3>Dateisysteme</h3>
 <div class="Inhalte">
   <ul>
-    <li><h4>Anwenden von Verwaltung von Dateisystemen</h4></li>
+    <li>
+      <h4>
+        Grundlagen
+      </h4>
+      <ul>
+        <li>Anwendungen müssen Daten persistent auf Speicher ablegen</li>
+        <li>Speichermedium = lineare Folge von Blöcken</li>
+        <li>Konzept Datei = Menge von Blöcken (abstrakt)</li>
+        <li>
+          Dateisystem Aufgabe: Zuordnung/Organisation von Dateien in
+          Blöcke/Verzeichnisse
+        </li>
+        <li>
+          Verschiedene Dateisysteme:
+          <ul>
+            <li>Repräsentation für Benutzer</li>
+            <li>Implementierung abhängig von Speicher</li>
+          </ul>
+        </li>
+        <li>Inhalt egal</li>
+      </ul>
+    </li>
+    <li>
+      <h4>Implementierung</h4>
+      <ul>
+        <li>
+          Architektur
+          <ul>
+            <img src="./assets/DateisystemeArchitektur.JPG" />
+          </ul>
+        </li>
+        <li>
+          Festplatten
+          <ul>
+            <img src="./assets/FestplatteAufbau.JPG" />
+            <li>
+              Physischer Aufbau
+              <ul>
+                <li>Festplatte = mehrere Disks(Oberflächen)</li>
+                <li>Disk = mehrere Tracks (Spuren)</li>
+                <li>
+                  Track = beliebig viele gleich große Sektoren (/Windows oft:
+                  Blöcke)
+                </li>
+                <li>Zugriff nur sektorweise</li>
+              </ul>
+            </li>
+            <li>
+              Adressierung
+              <ul>
+                <li>
+                  Cylinder Head Sector (CHS) = Adressierung über die Zylinder-,
+                  Schreib-/Lesekop-, Sektorennummer in Reihenfolge
+                </li>
+                <li>
+                  Logical Block Adressing (LBA) = Adressierung über eine
+                  eindeutige Nummern (NUmmerierung linear von 0)
+                </li>
+                <li>
+                  Betriebssystem: fasst Sektoren zu Blöcken (/Windows: Clustern)
+                  enigestellter Größe zusammen
+                </li>
+              </ul>
+            </li>
+            <li>
+              Partionen
+              <ul>
+                <img src="./assets/FestplattePartionen.JPG" />
+                <li>Festplatte = mehrere Partionen</li>
+                <li>Partion: Hat eigenes Dateisystemm</li>
+                <li>
+                  MBR Partionsschema (MBR)
+                  <ul>
+                    <li>
+                      Beginn: Master Boot Record (MBR) - enthält Teile des
+                      Bootloaders und Partionstabelle
+                    </li>
+                    <li>Partion = aktiv, wenn von ihr ein Rechner bootet</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Realisierung Dateien
+              <ul>
+                <li>
+                  Ziele:
+                  <ul>
+                    <li>wenig Fragmentierung bei Löschen/Änderungen</li>
+                    <li>Effizienz (Wahlfreiheit)</li>
+                    <li>Speichereffizienz (kompakte Strukturen)</li>
+                  </ul>
+                </li>
+                <li>
+                  Möglichkeiten
+                  <ul>
+                    <li>
+                      Zusammenhängende Belegung
+                      <ul>
+                        <img src="./assets/ZusammenhaengendeBelegung.JPG" />
+                        <li>Dateien hintereinander</li>
+                        <li>+ erstmal wenig Fragmentierung</li>
+                        <li>+ Wahlfrei</li>
+                        <li>+ Kompakte Strukturen</li>
+                        <li>- Viel Fragmentierung bei Löschen/Ändern</li>
+                      </ul>
+                    </li>
+                    <li>
+                      Verkettete Listen
+                      <ul>
+                        <img src="./assets/BelegungVerketteteListe.JPG" />
+                        <li>
+                          Datei durch verkettete Liste von Blöcken dargstellt
+                        </li>
+                        <li>+ keine Fragmentierung bei Löschen/Ändern</li>
+                        <li>
+                          - wahlfrei, welche Datei, aber linear durch
+                          Dateiliste, um Informationen aus Mitte des
+                          Dokumenteszu bekommen
+                        </li>
+                        <li>- Nicht so Kompakt</li>
+                      </ul>
+                    </li>
+                    <li>
+                      Index-Nodes
+                      <ul>
+                        <img src="./assets/BelegungINodes.JPG" />
+                        <li>Jeder Datei ein I-Node zugeordnet</li>
+                        <li>+ Keine Fragementierung bei Löschen/Ändern</li>
+                        <li>+ Wahlfreier Zugriff auf alle Teile möglich</li>
+                        <li>- Komplexe Struktur</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Realisierung von Verzeichnissen
+              <ul>
+                <li>Wurzelverzeichnis an fixem Ort gespeichert</li>
+                <li>Unterverzeichnisse wie Dateien</li>
+                <li>
+                  einfaches Verzeichnis mit Adressen und Attributen
+                  <img src="./assets/VerzeichnisEinfach.JPG" />
+                </li>
+                <li>
+                  Verzeichnis mit I-Nodes
+                  <img src="./assets/VerzeichnisINodes.JPG" />
+                </li>
+              </ul>
+            </li>
+            <li>
+              Freie Blöcke
+              <ul>
+                <li>
+                  Freibereichsliste
+                  <ul>
+                    <img src="./assets/Freibereichsliste.JPG" />
+                    <li>ähnlich I-Nodes</li>
+                  </ul>
+                </li>
+                <li>
+                  Bitmap
+                  <ul>
+                    <img src="./assets/Bitmap.JPG" />
+                    <li>Ein Bit pro Block, 0, wenn frei, 1 wenn belegt</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <h4><strong>Anwenden von Verwaltung von Dateisystemen</strong></h4>
+    </li>
     <ul>
       <li>
-        in Linux
+        <h4>In UNIX</h4>
         <ul>
-          <li>Inodes</li>
-          <li>Verzeichnisse</li>
-          <li>Links (Hard links, Soft Links)</li>
-          <li>Aufbau</li>
           <li>
-            Verweise/Links
+            Plattenlayout
             <ul>
+              <img src="./assets/LogischesLaufwerkUNIX.JPG" />
+              <li>Bootblock - Ladeprogramm des Kernels</li>
               <li>
-                Datei hat Inode(Indexknotennummer) mit eindeutiger Nummer
+                Superblock - Informationen über Layout, Anzahl I-Nodes, Blöcke
               </li>
               <li>
-                Inode=Datenstruktur
+                I-Nodes - 64Byte lang, Informationen unm genau Datenblöcke einer
+                Datei zu finden
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            Inodes
+            <ul>
+              <img src="./assets/INodesStruktur.JPG" />
+              <li>
+                I-Node speichert alle nötigen Informationen
                 <ul>
                   <li>Dateigröße</li>
                   <li>physikalische Position</li>
                   <li>Zugriffsrechte</li>
-                  <li>Erstellungs/ letzte Modifikatinoszeit</li>
+                  <li>Erstellungs/ letzte Modifikationszeit</li>
                 </ul>
               </li>
-              <li>Dateiname=Verweis auf Inode</li>
-              <li>Inode kann mehreren Dateinamen zugeordnet werden</li>
-              <li>Zuordnung= Hard Link/Referenz</li>
+              <img src="./assets/INodes.JPG" />
+
+              <li>direkt Speichern: bis zu 10 Blockadressen</li>
               <li>
-                Dateien, die Pfad zur verlinkten Datei enthalten = Soft
-                Link/Sysmbolischer Link
+                Indirekte Blöcke: enthalten Verweise auf Blöcke -> Von Datei
+                oder wieder indirekt
+              </li>
+              <li>
+                indirektes Speichern: Blockgröße/Blockadressenlänge = Anzahl
+                Blockadressen
+              </li>
+
+              <li>
+                Verweise/Links
+                <ul>
+                  <img src="./assets/VerweiseUNIX.JPG" />
+                  <li>Dateiname = Verweis/link auf I-Node</li>
+                  <li>
+                    Datei hat Inode(Indexknotennummer) mit eindeutiger Nummer
+                  </li>
+
+                  <li>Inode kann mehreren Dateinamen zugeordnet werden</li>
+                  <li>Zuordnung = Hard Link/Referenz</li>
+                  <li>
+                    Dateien, die auf andere Dateien zeigen = Soft
+                    Link/Sysmbolischer Link
+                  </li>
+                  <li>
+                    I-Nodes mit weiterem Namen für Datei = Soft
+                    Link/Symbolischer Link
+                  </li>
+                  <li>Symbolische Links haben verschiedne I-Nodes</li>
+                </ul>
               </li>
             </ul>
           </li>
         </ul>
       </li>
       <li>
-        In Windows(FAT)
+        <h4>In Windows(FAT)</h4>
         <ul>
-          <li>FAT (Tabelle)</li>
-          <li>Stammverzeichnis</li>
+          <img src="./assets/VerzeichnisMSDOS.JPG" />
           <li>
-            Stammverzeichnis und FAT
+            Nutzung File Allocation Table (FAT)
             <ul>
+              <img src="./assets/FAT.JPG" />
               <li>
-                Wurzelverzeichnis/Satmmverzeichnis enthält Adressen zu FAT
+                Wurzelverzeichnis/Stammverzeichnis enthält Adressen zu FAT
               </li>
               <li>
                 FAT enthält Name und Zeiger auf nächstes Element oder einer End
                 of File Annotation
               </li>
+              <li>
+                FAT-Größen
+                <ul>
+                  <img src="./assets/FATGroessen.JPG" />
+                  <li>
+                    FAT-12/-16/-32 = Azahl der Bits für Blockadresse in FAT
+                  </li>
+                  <li>FAT-32 nur 28 Bit</li>
+                  <li>Es ergeben sich maximale Dateigrößen von 4GiB-1Byte</li>
+                </ul>
+              </li>
             </ul>
           </li>
+          <li>Keine Benutzerrechte - Einbenutzersystem</li>
         </ul>
       </li>
     </ul>
-    <li><h4>Cluster</h4></li>
-
-    <li><h4>Metadaten</h4></li>
-    <li><h4>Adressierung</h4></li>
   </ul>
 </div>
 <h3>Zettel</h3>
