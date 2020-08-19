@@ -21,9 +21,9 @@ body {
 .Inhalte {
   font-family: monospace;
 }
-h4{
-  color:white;
-  background-color:rgb(41, 90, 153);
+h4 {
+  color: white;
+  background-color: rgb(41, 90, 153);
 }
 h3 {
   color: rgb(8, 8, 73);
@@ -74,15 +74,13 @@ span.breadcrumb:active,
 span.breadcrumb:focus {
   color: black;
 }
+
 img {
-  width: 100%;
-  border: solid 2px rgb(121, 193, 221);
-  border-radius: 10px;
-}
-img.klein {
-  max-height: 250px;
+  max-height: 300px;
   max-width: 100%;
   width: auto;
+  border: solid 2px rgb(121, 193, 221);
+  border-radius: 10px;
 }
 
 ul {

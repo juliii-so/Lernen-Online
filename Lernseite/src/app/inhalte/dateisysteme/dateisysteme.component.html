@@ -30,13 +30,13 @@
         <li>
           Architektur
           <ul>
-            <img src="./assets/DateisystemeArchitektur.JPG" />
+            <img src="assets/DateisystemeArchitektur.jpg" />
           </ul>
         </li>
         <li>
           Festplatten
           <ul>
-            <img src="./assets/FestplatteAufbau.JPG" />
+            <img src="assets/FestplatteAufbau.jpg" />
             <li>
               Physischer Aufbau
               <ul>
@@ -69,7 +69,7 @@
             <li>
               Partionen
               <ul>
-                <img src="./assets/FestplattePartionen.JPG" />
+                <img src="assets/FestplattePartionen.jpg" />
                 <li>Festplatte = mehrere Partionen</li>
                 <li>Partion: Hat eigenes Dateisystemm</li>
                 <li>
@@ -101,7 +101,7 @@
                     <li>
                       Zusammenhängende Belegung
                       <ul>
-                        <img src="./assets/ZusammenhaengendeBelegung.JPG" />
+                        <img src="assets/ZusammenhaengendeBelegung.jpg" />
                         <li>Dateien hintereinander</li>
                         <li>+ erstmal wenig Fragmentierung</li>
                         <li>+ Wahlfrei</li>
@@ -112,7 +112,7 @@
                     <li>
                       Verkettete Listen
                       <ul>
-                        <img src="./assets/BelegungVerketteteListe.JPG" />
+                        <img src="assets/BelegungVerketteteListe.jpg" />
                         <li>
                           Datei durch verkettete Liste von Blöcken dargstellt
                         </li>
@@ -128,7 +128,7 @@
                     <li>
                       Index-Nodes
                       <ul>
-                        <img src="./assets/BelegungINodes.JPG" />
+                        <img src="assets/BelegungINodes.jpg" />
                         <li>Jeder Datei ein I-Node zugeordnet</li>
                         <li>+ Keine Fragementierung bei Löschen/Ändern</li>
                         <li>+ Wahlfreier Zugriff auf alle Teile möglich</li>
@@ -146,11 +146,14 @@
                 <li>Unterverzeichnisse wie Dateien</li>
                 <li>
                   einfaches Verzeichnis mit Adressen und Attributen
-                  <img src="./assets/VerzeichnisEinfach.JPG" />
+                  <img
+                    src="assets/VerzeichnisEinfach.jpg"
+                    style="max-height: 300px; width: auto;"
+                  />
                 </li>
                 <li>
                   Verzeichnis mit I-Nodes
-                  <img src="./assets/VerzeichnisINodes.JPG" />
+                  <img src="assets/VerzeichnisINodes.jpg" />
                 </li>
               </ul>
             </li>
@@ -160,14 +163,16 @@
                 <li>
                   Freibereichsliste
                   <ul>
-                    <img src="./assets/Freibereichsliste.JPG" />
+                    <img src="assets/Freibereichsliste.jpg" />
                     <li>ähnlich I-Nodes</li>
                   </ul>
                 </li>
                 <li>
                   Bitmap
                   <ul>
-                    <img src="./assets/Bitmap.JPG" />
+                    <img
+                      src="assets/Bitmap.jpg"
+                    />
                     <li>Ein Bit pro Block, 0, wenn frei, 1 wenn belegt</li>
                   </ul>
                 </li>
@@ -187,7 +192,7 @@
           <li>
             Plattenlayout
             <ul>
-              <img src="./assets/LogischesLaufwerkUNIX.JPG" />
+              <img src="assets/LogischesLaufwerkUNIX.jpg" />
               <li>Bootblock - Ladeprogramm des Kernels</li>
               <li>
                 Superblock - Informationen über Layout, Anzahl I-Nodes, Blöcke
@@ -202,7 +207,7 @@
           <li>
             Inodes
             <ul>
-              <img src="./assets/INodesStruktur.JPG" />
+              <img src="assets/INodesStruktur.jpg" />
               <li>
                 I-Node speichert alle nötigen Informationen
                 <ul>
@@ -212,7 +217,7 @@
                   <li>Erstellungs/ letzte Modifikationszeit</li>
                 </ul>
               </li>
-              <img src="./assets/INodes.JPG" />
+              <img src="assets/INodes.jpg" />
 
               <li>direkt Speichern: bis zu 10 Blockadressen</li>
               <li>
@@ -227,7 +232,7 @@
               <li>
                 Verweise/Links
                 <ul>
-                  <img src="./assets/VerweiseUNIX.JPG" />
+                  <img src="assets/VerweiseUNIX.jpg" />
                   <li>Dateiname = Verweis/link auf I-Node</li>
                   <li>
                     Datei hat Inode(Indexknotennummer) mit eindeutiger Nummer
@@ -253,11 +258,11 @@
       <li>
         <h4>In Windows(FAT)</h4>
         <ul>
-          <img src="./assets/VerzeichnisMSDOS.JPG" />
+          <img src="assets/VerzeichnisMSDOS.jpg" />
           <li>
             Nutzung File Allocation Table (FAT)
             <ul>
-              <img src="./assets/FAT.JPG" />
+              <img src="assets/FAT.jpg" />
               <li>
                 Wurzelverzeichnis/Stammverzeichnis enthält Adressen zu FAT
               </li>
@@ -268,7 +273,7 @@
               <li>
                 FAT-Größen
                 <ul>
-                  <img src="./assets/FATGroessen.JPG" />
+                  <img src="assets/FATGroessen.jpg" />
                   <li>
                     FAT-12/-16/-32 = Azahl der Bits für Blockadresse in FAT
                   </li>

@@ -3,20 +3,76 @@
 <div class="Inhalte">
   <ul>
     <li>
-      <h4>Speicherzuweisung</h4>
+      <h4>Speicherverwaltung</h4>
       <ul>
-        <li>Statisch</li>
         <li>
-          Dynamisch
+          Prozessintern
+          <ul>
+            <img src="./assets/SpeicherverwaltungIntern.jpg" />
+            <li>Heap: frei Verwendbarer Speicherpool</li>
+            <li>Programme können: Soeicherblöcke anfordern/freigeben</li>
+          </ul>
+        </li>
+        <li>
+          Verwaltung freier Speicher
           <ul>
             <li>
-              First Fit-Von vorne schauen, erste mindestens passend große Lücke
+              Speicherverwaltung muss freie Speicherbereiche kennen, um zuweisen
+              zu können
             </li>
-            <li>Best Fit-Lücke mit kleinstem Verschnitt</li>
-            <li>Worst Fit-Lücke mit größtem Verschnitt</li>
             <li>
-              Next Fit-Nächste von zuletzt betrachteter Lücke, die mindestens
-              passend groß ist
+              Bitmap
+              <ul>
+                <img src="./assets/Bitmap.jpg" />
+                <li>Speicher in Belegungseinheiten (Blöcke) geteilt</li>
+                <li>Bit der Bitmap repräsentiert Block</li>
+                <li>Zustand etscheidet ob frei oder belegt</li>
+                <li>
+                  Fragmentierung
+                  <ul>
+                    <li>Intern - Verschnitt durch Blockgröße</li>
+                    <li>Extern - Speicher nicht am Stück frei</li>
+                  </ul>
+                </li>
+                <li>
+                  Kompromiss: Große Bitmap(kleine Blöcke) oder interne
+                  Fragmentierung
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              Freibereichslisten
+              <ul>
+                <img src="./assets/FreibereichslisteSpeicherverwaltung.jpg" />
+                <li>Verkettung der Speicherblöcke mit verschiedener Größe</li>
+                <li>In Praxis meist nur Freie Speicherblöcke erfasst</li>
+                <li>
+                  Strategien für Lückenwahl
+                  <ul>
+                    <li>
+                      First Fit - Von vorne schauen, erste mindestens passend
+                      große Lücke
+                    </li>
+                    <li>
+                      Best Fit - Lücke mit kleinstem Verschnitt (-Langsam)
+                    </li>
+                    <li>Worst Fit - Lücke mit größtem Verschnitt</li>
+                    <li>
+                      Next Fit - Nächste von zuletzt betrachteter Lücke, die
+                      mindestens passend groß ist
+                    </li>
+                  </ul>
+                </li>
+                <li>Freie Blöcke müssen wieder zusammengefasst werden</li>
+                <li>
+                  Fragmentierung:
+                  <ul>
+                    <li>Intern: Nicht, da Blöcke variabel</li>
+                    <li>Extern: Durch freie Bereiche</li>
+                  </ul>
+                </li>
+              </ul>
             </li>
           </ul>
         </li>
@@ -29,7 +85,7 @@
           Konzept
           <ul>
             <li>Protected</li>
-            <li>Speicherschutz- Sicherheit+ Stabilität</li>
+            <li>Speicherschutz: Sicherheit + Stabilität</li>
             <li>
               Jeder Prozess in abgeschotteter Kopie des physikalischen
               Adressraums
@@ -43,14 +99,21 @@
                 <li>
                   Stellt Adressbereiche im Real Mode für Prozesse bereit
                 </li>
-                <li>
-                  CPU übersetzt physikalische Speicheradressn mur ´´ítCPU
-                </li>
+              </ul>
+            </li>
+            <li>
+              Speicherhierarchie:
+              <ul>
+                <img src="./assets/SpeicherverwaltungHierarchie.jpg" />
+                <li>Virtuelle Räume > physikalische Speicher</li>
+                <li>Virtueller Speicher kann ausgelagert werden</li>
+                <li>Rest bei Bedarf nachgeladen</li>
               </ul>
             </li>
             <li>
               eigener Adressraum
               <ul>
+                <img src="./assets/VirtuellerSpeicher.jpg" />
                 <li>nach Bedarf erzeugt/gelöscht</li>
                 <li>sind geschützt</li>
                 <li>
@@ -69,28 +132,44 @@
             </li>
           </ul>
         </li>
-        <li>
-          Paging (Adressumwandluung)
-          <ul>
-            <li>
-              Einstufig
-              <ul>
-                <li>Virtuelle Adresse zeigt auf Seitentabelle</li>
-                <li>
-                  Eintrag in Seitentabelle konkat Virtuelle Adresse ergeben
-                  Physische Adresse
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
+
         <li>
           Segmentierung (Adressumwandlung)
           <ul>
-            <li>Virtuelle Adresse Zeigt auf Segmenttabelle</li>
+            <img src="./assets/Segmentierung.jpg" />
+            <li>Prozess erhält seperaten Adressbereich = Segment</li>
+            <li>
+              CPU/MMU kennt Startadresse und physikalische länge für jedes
+              Segment
+            </li>
+            <li>
+              CPU/MMU übersetzt Segment-Nummer:Offset in physikalische Adresse
+            </li>
+            <li>Virtuelle Adresse zeigt auf Segmenttabelle</li>
             <li>
               Eintrag aus Segmenttabelle plus Virtuelle Adresse ergibt physische
               Adresse
+            </li>
+            <li>
+              Adressumwandlung Segmentierung
+              <ul>
+                <img src="./assets/SegmentierungAdressumwandlung.jpg" />
+                <li>Segmentnummer aus Adresse gibt Zeile der Segmenttabelle</li>
+                <li>Inhalt Segemttabelle und Offset addiert</li>
+              </ul>
+            </li>
+            <li>
+              Mehr Sicherheit durch Segmentierung
+              <ul>
+                <img src="./assets/SegmenteSicherheit.jpg" />
+                <li>Prozesse können nicht in fremde Segmente schreiben</li>
+                <li>Prozesse können nicht ins Text-Segment schreiben</li>
+                <li>Prozesse können nur Code im Text-Segment ausführen</li>
+                <li>
+                  Bei fehlerhaften Adressen wird abgebrochen
+                  (Offsetlänge>Segmentlänge)
+                </li>
+              </ul>
             </li>
           </ul>
         </li>
@@ -99,16 +178,171 @@
           Swapping
           <ul>
             <li>
-              Virtueller SPeicher kann größer sein als realer Speicher
+              Virtueller Speicher kann größer sein als realer Speicher
             </li>
-            <li>Daten werden asugelagert/verdrängt auf SDD/HDD</li>
+            <li>Prozesse bei Leerlauf ausgelagert</li>
+            <li>Daten werden ausgelagert/verdrängt auf SDD/HDD</li>
+            <li>Erst bei Bedarf wieder geladen</li>
             <li>
-              Seitenersetzungsstrategien:
+              Probleme
               <ul>
-                <li>Not recently used</li>
-                <li>Least recently used</li>
-                <li>First in First out</li>
-                <li>Clock/Second chance</li>
+                <li>Fragmentierung</li>
+                <li>Prozesse haben dynamischen Speicherbedarf</li>
+                <li>Prozess muss komplett in Speicher passen</li>
+                <li>Performance beim Schreiben</li>
+              </ul>
+            </li>
+          </ul>
+          Paging (Adressumwandluung)
+          <ul>
+            <img src="./assets/PagingIdee.jpg" />
+            <li>Virtueller Adressraum eingeteilt in Seiten (relativ klein)</li>
+            <li>
+              Physikalischer Speicher eingeteilt in Seitenrahmen (gleicher
+              Größe)
+            </li>
+            <li>Zuordnung Seiten - Seitenrahmen: Seitentabelle</li>
+            <li>Seitenfehler bei Zugriff auf Seite außerhalb des Speichers</li>
+            <li>
+              Betriebssystem wählt eine Seite aus, die gesichert wird und
+              tauscht diese gegen die geforderte
+            </li>
+            <img src="./assets/EintragSeitentabelle.jpg" />
+            <li>
+              Adressumwandlung Paging
+              <ul>
+                <li>
+                  Einstufig
+                  <ul>
+                    <img src="./assets/AdressumwandlungPaging.jpg" />
+                    <li>Virtuelle Adresse zeigt auf Seitentabelle</li>
+                    <li>
+                      Eintrag in Seitentabelle konkat Virtuelle Adresse ergeben
+                      Physische Adresse
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Mehrstufiges Paging
+                  <ul>
+                    <img src=./assets/PagingMehrstufig.jpg"/>
+                    <li>Mehr Seiten erlaubt</li>
+                    <img src="./assets/AdressumwandlungPagingMehrstufig.jpg" />
+                    <li>PTD = Seitentabellen-Deskriptor</li>
+                    <li>PD = Seiten-Deskriptor</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Seitenersetzungsstrategien:
+          <ul>
+            <li>
+              Optimal:
+              <ul>
+                <li>
+                  Modifizierungen müssen erst geschirben werden bevor ersetzt
+                  wird
+                </li>
+                <li>
+                  Seite entfernen, dessen nächster Aufruf am weiteseten in der
+                  Zukunft/nie sattfindet
+                </li>
+              </ul>
+            </li>
+            <li>
+              Not recently used
+              <ul>
+                <li>
+                  Laden einer Seite: Betriebssystem setzt R- und M-Bit auf 0
+                </li>
+                <li>Zugriff einer Seite: MMU setzt R- und oder M-Bit auf 1</li>
+                <li>
+                  Nach bestimmter Zeit werden alle R-Bits von Betriebssystem auf
+                  0 gesetzt
+                </li>
+                <li>
+                  Einteilung der Seiten in 4 Kategorien
+                  <ul>
+                    <li>Klasse 0: R=0, M=0</li>
+                    <li>
+                      Klasse 1: R=0, M=1 (zB Wenn Zeit abgelaufen und alle
+                      Seiten R=0 gesetzt wurden)
+                    </li>
+                    <li>Klasse 2: R=1, M=0</li>
+                    <li>Klasse 3: R=1, M=1</li>
+                  </ul>
+                </li>
+                <li>
+                  NRU-Algorithmus wählt zufällig eine Seite der niedrigsten
+                  Klasse
+                </li>
+              </ul>
+            </li>
+            <li>
+              Least recently used
+              <ul>
+                <img src="./assets/SELRUA.jpg" />
+                <li>
+                  Idee: Seiten, die kürzlich benutzt wurden, werden wieder
+                  benötigt
+                </li>
+                <li>Zeitstempel des letzten Zugriffs gespeichert</li>
+                <li>Seite, die am längsten unbenutzt ist, fliegt raus</li>
+
+                <li>- Technisch aufwändig</li>
+              </ul>
+            </li>
+            <li>
+              First in First out (FIFO)
+              <ul>
+                <img src="./assets/SEFIFO.jpg" />
+                <li>Alle Seiten in verketteter Liste gespeichert</li>
+                <li>neu geladene Seiten an ENde angehängt</li>
+                <li>Immer älteste Seite (am Beginn) wird ausgelagert</li>
+                <li>
+                  + Wenn lange nicht benutzt werden zumindest keine standig
+                  benutzt Seiten ausgelagert
+                </li>
+                <li>- Wenn die Seite genau danach wieder benötigt wird</li>
+                <li>
+                  - Seiten die ständig benutzt werden ändern ihren Pkatz nicht
+                </li>
+              </ul>
+            </li>
+            <li>
+              Second chance
+              <ul>
+                <img src="./assets/SESC.jpg" />
+                <li>Wie FIFO nur mit R-Bit</li>
+                <li>
+                  R-Bit:
+                  <ul>
+                    <li>0 - Seite alt</li>
+                    <li>
+                      1 - Seite nicht entfernt, sondern ans Ende gesetzt und R
+                      auf 0 gesetzt sowie Zeitstempel aktualisiert
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Clock-Algoritmus
+                  <ul>
+                    <img src="./assets/SEClock.jpg" />
+                    <li>Weiterentwicklung von Second Chance</li>
+                    <li>Ringpuffer statt FIFO</li>
+                    <li>Zeiger auf älteste Seite</li>
+                    <li>
+                      Bei Seitenfehler wird R-Bit des Zeigers betrachtet:
+                      <ul>
+                        <li>R=0: Verdrängen der Seite</li>
+                        <li>R=1: lösche R und Zeiger weiter</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
               </ul>
             </li>
           </ul>
