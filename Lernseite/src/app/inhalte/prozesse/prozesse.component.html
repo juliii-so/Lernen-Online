@@ -2,79 +2,303 @@
 <h3>Prozesse</h3>
 <div class="Inhalte">
   <ul>
-    <li>Prozesstabelle zeigt auf Prozesskontrollblöcke</li>
     <li>
-      <h4>Prozesskontrollblock</h4>
+      <h4>Prozessbegriff</h4>
       <ul>
-        <li>ID</li>
-        <li>ID Elternprozess</li>
-        <li>Zustand</li>
-        <li>Inhalt Prozessorregister</li>
-        <li>offene Dateien</li>
-        <li>Peripheriegeräte</li>
-        <li>Laufzeit</li>
-        <li>Speicherbereiche</li>
-        <li>Priorität</li>
+        <li>Prozess = Programm in Ausführung</li>
+        <li>Er bekommt Arbeitsspeicher, CPU-Zeit, Ressourcen</li>
+        <li>Schnelle Umschaltung - Scheinbar Parallelität</li>
+        <li>
+          Verwaltung von Prozessen: Prozesskontrollblock
+          <ul>
+            <li>
+              Muss alle Informationen enthalten um laufenden Prozess
+              unterbrechen/fortsetzen zu können
+            </li>
+            <li>ID</li>
+            <li>ID Elternprozess</li>
+            <li>Zustand</li>
+            <li>Inhalt Prozessorregister</li>
+            <li>offene Dateien</li>
+            <li>Peripheriegeräte</li>
+            <li>Laufzeit</li>
+            <li>Speicherbereiche</li>
+            <li>Priorität</li>
+          </ul>
+        </li>
+        <li>
+          Zustände von Prozessen
+          <img src="./assets/Prozesszustaende.jpg" />
+        </li>
       </ul>
     </li>
     <li>
-      <h4>Prozesswechsel</h4>
+      <h4>Prozesse und Betriebssystem</h4>
       <ul>
-        <li>Dispatcher</li>
+        <img src="./assets/Privilegierungsebenen.jpg" />
         <li>
-          Scheduler
+          x86: 4 Privilegierungsebenen - Sicherheit/Stabilität, da Prozesse nur
+          in einem Ring
           <ul>
             <li>
-              nicht päembtiv(nicht verdränged)
+              Ring 0/Kernel-Modus: Prozesse haben vollen Zugriff auf Hardware,
+              physischer Speicher kann adressiert werden
+            </li>
+            <li>
+              Ring 3/Benutzermodul: Anwendungen, nur virtueller Speicher kann
+              adressiert werden
+            </li>
+            <li>Ring 0-1: Betriebssystem</li>
+            <li>Ring 2-3: Anwendungsprozesse</li>
+          </ul>
+        </li>
+        <li>
+          Systemaufrufe
+          <ul>
+            <img src="./assets/Systemaufrufe.jpg" />
+            <li>
+              Wenn ein Prozess höher privilegiertere Aufgabe: Systemaufruf an
+              Kernel
+            </li>
+            <li>
+              Funktionsaufruf im Betriebssystem -> Sprung vom Benutzermodus in
+              Kernelmodus
               <ul>
-                <li>Prozess behält Kontrolle, bis fertig</li>
+                <li>Prozess gibt Kontrolle CPU an Kernel ab</li>
+                <li>Prozess unterbrochen, bis Anfrage fertig</li>
                 <li>
-                  Problem: Blockieren des Prozesses, wichtige Prozesse kommen
-                  nicht dran
+                  Nach Systemaufruf geht CPU wieder an Prozess im Benutzermodus
+                  an unterbrocheneer Stelle
                 </li>
               </ul>
             </li>
             <li>
-              präembtiv (verdränged)
-              <ul>
-                <li>CPU kann vor Fertigstellung entzogen werden</li>
-                <li>pasuieren, bis wieder CPU zugeteilt</li>
-                <li>Problem: Mehr Kontrolle nötig(Overhead)</li>
-                <li>Vorteil: Prioritäten beachtet</li>
-              </ul>
+              Leistung des Systemaufrufs im Kernel - Außerhalb
+              Prozess-Adressraum
             </li>
             <li>
-              Verfahren
+              zB Prozesse/Dateien erzeugen/verwalten, auf Hardware zugreifen
+            </li>
+            <li>
+              Interrupts: Ereignisse außerhalb von Prozessoren (zB Tastatur,
+              Maus, DMA, ...)
+            </li>
+            <img src="./assets/SystemaufrufeBibliotheken.jpg" />
+            <li>
+              Linux: ioctl(Filedeskriptor/ Aktionsanforderung/ Integer-Wert/
+              Zeiger auf Daten) - Ermöglicht Prozessen Kommunikation/ Steuerung:
+              Zeichen-/ Blockorientierte Geräte
+            </li>
+            <li>
+              Problem: direkt mit Systemaufrufen arbeiten: unsicher/ nicht
+              portabel
+            </li>
+            <li>Lösung: Bibliothek zwischen Benutzerprozessen und Kern</li>
+            <li>
+              Bibliotheken
               <ul>
-                <li>First Comes First Serve</li>
-                <li>Shortest Process next</li>
-                <li>Round-Robin</li>
-                <li>Prioritäten</li>
-                <li>Multi-Level Scheduling</li>
-                <li>Multi-Level Feedback Scheduling</li>
-                <li>Linux Scheduling</li>
+                <li>Kommunikationsvermittlung mit dem Kernel</li>
+                <li>Moduswechsel</li>
+                <li>
+                  Bessere Portabilität: Kein Bedarf Benutzerprozesse direkt mit
+                  Kernel kommunizieren
+                </li>
+                <li>
+                  Mehr Sicherheit: Benutzerprozesse können nicht selber Modus
+                  wechseln
+                </li>
               </ul>
             </li>
           </ul>
         </li>
       </ul>
     </li>
+
     <li>
-      <h4>Prozesslebenszyklus</h4>
+      <h4>Verwaltung von Prozessen und Prozesswechsel</h4>
       <ul>
-        <li>Created -Start dann Ready</li>
-        <li>Ready - zur Ausführung gewählt dann Running</li>
         <li>
-          Running - Zeit abgelaufen, dann Ready, oder Systemaufruf, dann bocked
-          oder beendet, dann terminated
+          Verwaltung
+          <ul>
+            <img src="./assets/Prozessverwaltung" />
+            <li>Prozesse werden in Queues gespeichert</li>
+            <li>
+              Effizienzsteigerung: Blocked Queue - Pro I-/O-Event eine Queue
+            </li>
+          </ul>
         </li>
-        <li>Blocked - Systemaufruf beednet, dann ready</li>
-        <li>terminated - Ende</li>
+        <li>
+          Dispatcher: Schaltet zwischen Prozessen um
+          <ul>
+            <li>Speichert Prozesskontext</li>
+            <li>Aktualisiert Prozesskontrollblock</li>
+            <li>
+              Prozesskontrollblock wird in entsprechender Queue gespeichert
+            </li>
+          </ul>
+        </li>
       </ul>
     </li>
     <li>
+      Scheduler: Wählt nächsten Prozess
+      <ul>
+        <li>
+          Ziele
+          <ul>
+            <li>Fairness</li>
+            <li>Durchsatz (Jobs/Zeit)</li>
+            <li>Durchlaufzeit (Minimierung Start-Ende)</li>
+            <li>Balance (Alle Teile ausgelastet)</li>
+            <li>CPU-Ausnutzung</li>
+            <li>Antwortzeit</li>
+            <li>Vorhersagbarkeit</li>
+            <li>Proportionalität (Bearbeitungszeit-Aufwand)</li>
+          </ul>
+        </li>
+        <li>
+          kooperativ / nicht päembtiv(nicht verdränged)
+          <ul>
+            <li>
+              Prozess behält Kontrolle, bis fertig oder blockiert oder
+              freiwillig abgibt
+            </li>
+            <li>
+              Problem: Blockieren des Prozesses, wichtige Prozesse kommen nicht
+              dran
+            </li>
+            <li>+ geringer Aufwand</li>
+            <li>+ Geringer Aufwand</li>
+            <li>- Reaktion ggf lange Asuführungszeit</li>
+          </ul>
+        </li>
+        <li>
+          präembtiv (verdränged)
+          <ul>
+            <li>CPU kann vor Fertigstellung entzogen werden</li>
+            <li>pausieren, bis wieder CPU zugeteilt</li>
+            <li>+ Prioritäten beachtet</li>
+            <li>- Mehr Kontrolle nötig(Overhead)</li>
+          </ul>
+        </li>
+        <li>
+          Prozessverhalten muss beachtet werden
+          <ul>
+            <li>CPU intensiv - kaum Wartezeit, lange Nutzungszeit</li>
+            <li>I/O intensiv - häufig Wartezeiten, kurze CPU-Nutzungszeit</li>
+            <li>CPU wird schneller, deshalb mehr I/O intensiv</li>
+          </ul>
+        </li>
+        <li>
+          Verfahren
+          <ul>
+            <li>
+              First Comes First Serve
+              <ul>
+                <li>Prozesse in Warteschlange nach Ankunftszeit</li>
+                <li>
+                  Blockierter Prozess wird bei Wiederfreigabe ans Ende gestellt
+                </li>
+                <li>+ einfach</li>
+                <li>- Hohe Durchlaufzeit I/O-intesive Prozesse</li>
+              </ul>
+            </li>
+            <li>
+              Shortest Process next
+              <ul>
+                <li>
+                  Prozesse in Warteschlange gemäß ursprünglich geplanter
+                  Laufzeit
+                </li>
+                <li>+ I/O-intensiv bevorzugt</li>
+                <li>- Kenntnis über Laufzeit notwendig</li>
+              </ul>
+            </li>
+            <li>
+              Round-Robin
+              <ul>
+                <li>
+                  Jeder Prozess darf Zeit laufen, danach ans Ende der
+                  Warteschleife
+                </li>
+                <li>+ Fair</li>
+                <li>+ I/O kommen gut durch</li>
+                <li>- Lange Prozesse brauchen sehr lange</li>
+              </ul>
+            </li>
+            <li>
+              Prioritäten
+              <ul>
+                <li>jeder Prozess hat Priorität (konstant)</li>
+                <li>
+                  Immer höchstpriorisierter Prozess der nicht blockiert ist
+                </li>
+                <li>+ Prioritäten beachtet</li>
+                <li>+ Wichtig bei Echtzeitsyystemen (zB Airbag)</li>
+                <li>- ggf Starvation der unwichtigen Prozesse</li>
+              </ul>
+            </li>
+            <li>
+              Multi-Level Scheduling
+              <ul>
+                <li>Jeder Prozess hat Priorität (statisch oder dynamisch)</li>
+                <li>
+                  Prozesse je nach Priorität in verschiedene Verfahren (FCFS
+                  oder RR)
+                </li>
+                <li>- ggf Starvation</li>
+              </ul>
+            </li>
+            <li>
+              Multi-Level Feedback Scheduling
+              <ul>
+                <li>
+                  Prozesse haben Priorität abhängig von beisheriger Laufzeit
+                </li>
+                <li>nach festem Zeitintervall wechseln Prozesse</li>
+                <li>- ggf Starvation wenn viele neue Prozesse kommen</li>
+                <li>Lösung: Mehr Zeit, wenn Priorität niedriger</li>
+              </ul>
+            </li>
+            <li>
+              Linux Scheduling
+              <ul>
+                <li>Multilevel-Scheduling mit festem Zeitintervall</li>
+                <li>
+                  Priorität wird berechnet
+                  <ul>
+                    <img src="./assets/UnixScheduling.jpg" />
+                    <li>Prozesse werden nach Zeit wieder hochpriorisiert</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Verfahren vergleichen
+              <ul>
+                <li>
+                  Arrival Time Ta: Zeitpunkt zu dem Prozess erstmal bereit ist
+                </li>
+                <li>Service Time Ts: Ausführungsdauer</li>
+                <li>Completion Time Tc: Zeitpunkt wann Prozess beendet wrd</li>
+                <li>
+                  Turnaround Time Tr: Zeitdauer, die Prozess im System ist (Tc -
+                  Ta)
+                </li>
+                <li>
+                  Normalisierte Turnaround Time: Trunaround Time in Relation zu
+                  Service Time (Tr / Ts)
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+    <li>
       <h4>Prozesserzeugung</h4>
       <ul>
+        <img src="./assets/Prozesserzeugung.jpg" />
         <li>
           Windows
           <ul>
