@@ -2,14 +2,159 @@
 <h3>Synchronisation</h3>
 <div class="Inhalte">
   <ul>
-    <li><h4>Race Conditions</h4></li>
+    <li>
+      <h4>Grundlagen - Prozessinteraktion</h4>
+      <ul>
+        <img src="./assets/KommunikationKooperation.jpg" />
+        <li>Funktionaler Aspekt: Kommunkation und Kooperation</li>
+        <li>Zeitlicher Aspekt: Synchronisation</li>
+      </ul>
+    </li>
+    <li>
+      <h4>Nebenläufigkeit - Parallelität</h4>
+      <ul>
+        <li>Parallelität: gleichzeitig</li>
+        <li>
+          Nebenläufigkeit: Prozesse können parallel ausgeführt werden, müssen es
+          aber nicht - kein kausaler Zusammenhang
+        </li>
+        <li>
+          Probleme
+          <ul>
+            <li>
+              Race Conditions
+              <ul>
+                <li>
+                  Mehrere Prozesse lesen/schreiben in gleichen Speicherbereich
+                </li>
+                <li>
+                  Ergebnis von Abarbeitungsreihenfolge abhängig -
+                  Nichtdeterministisch
+                </li>
+                <li>
+                  Synchronisation notwendig - Lösungen
+                  <ul>
+                    <li>
+                      Wechselseitiger Ausschluss
+                      <ul>
+                        <li>
+                          Es darf nur ein Prozess aktiv sein, andere müssen
+                          warten
+                        </li>
+                        <li>Nebenläufigkeit muss ausgeschlossen werden</li>
+                        <li>
+                          Kompletter Prozess würde zu lange blockieren -> Nur
+                          kritische Bereiche synchronisieren
+                        </li>
+                        <li>
+                          Anforderungen
+                          <ol>
+                            <li>Nur 1 Prozess in kritischem Bereich</li>
+                            <li>
+                              Kein Prozess ausßerhalb kritischem Bereich darf
+                              andere Bereiche blockieren
+                            </li>
+                            <li>
+                              Kein Prozess sollte ewig warten (Starvation)
+                            </li>
+                            <li>Geschwindigkeit/ Anzahl CPU muss egal sein</li>
+                          </ol>
+                        </li>
+                        <li>auf Software Ebene nicht trivial</li>
+                      </ul>
+                    </li>
+                    <li>
+                      Ein Lock (Software)
+                      <ul>
+                        <img src="./assets/EinLock.jpg" />
+                        <li>
+                          - Lock Variable Wird von allen Prozessen zugegriffen
+                        </li>
+                        <li>
+                          - Wenn Prozess CPU entzogen wird innerhalb kritischem
+                          Bereich, dann kommt es zu Starvation
+                        </li>
+                        <li>- busy waiting</li>
+                        <li>
+                          - Wenn Prozess CPU entzogen wird in kritischem Bereich
+                          aber Lock noch nicht geänndert wurde, dann könnten
+                          mehrere Prozesse gleichzeitig in kritischen Prozess
+                          eintreten
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      Strikter Wechsel (Software)
+                      <ul>
+                        <img src="./assets/StrikterWechsel.jpg" />
+                        <li>
+                          Mit verschiedenen Werten für Lock werden Reihenfolgen
+                          festgelegt
+                        </li>
+                        <li>
+                          - Wenn Prozesse in falscher Reihenfolge CPU bekommen
+                          wird keiner in den kritischen Bereich kommen
+                        </li>
+                        <li>- turn wird von mehreren Prozessen zugegriffen</li>
+                        <li>- Busy waiting</li>
+                      </ul>
+                    </li>
+                    <li>
+                      Lock mit Brute Force (Hardware)
+                      <ul>
+                        <li>Interrupts in kriitischem Bereich sperren</li>
+                      </ul>
+                    </li>
+                    <li>
+                      Atomare Operationen
+                      <ul>
+                        <img src="./assets/AtomareOperationen.jpg" />
+                        <li>
+                          Atomare Operationen dürfen nicht unterbrochen werden
+                        </li>
+                        <li>Warten und Ändern direkt zusammenfassen</li>
+                      </ul>
+                    </li>
+                    <li>
+                      Semaphoren
+                      <ul>
+                        <li>
+                          Sempahoren sind Datenstrukturen mit Counter und Queue
+                        </li>
+                        <li>
+                          Methoden
+                          <ul>
+                            <img src="./assets/Semaphor.jpg"/>
+                            <li>init(int s) - Initiaslisiert</li>
+                            <li>
+                              wait() - counter-- und wenn countery0 blockiert
+                              den aufrufenden Prozess und fügt ihn in die Queue
+                              ein
+                            </li>
+                            <li>
+                              signal() - counter++ und wenn counter
+                              größer/gleich 0 wecke einen Prozess aus der Queue
+                              auf
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
     <li>
       <h4>Kritische Abschnitte</h4>
       <ul>
         <li>
           Sicherung
           <ul>
-            <li>SoftwareLösungen( Einfacher Lock, Strikter Wechsel)</li>
+            <li>SoftwareLösungen (Einfacher Lock, Strikter Wechsel)</li>
             <li>Atomare Funktionen</li>
             <li>
               Semaphor
