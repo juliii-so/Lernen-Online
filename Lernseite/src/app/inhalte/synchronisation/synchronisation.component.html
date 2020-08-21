@@ -124,7 +124,7 @@
                         <li>
                           Methoden
                           <ul>
-                            <img src="./assets/Semaphor.jpg"/>
+                            <img src="./assets/Semaphor.jpg" />
                             <li>init(int s) - Initiaslisiert</li>
                             <li>
                               wait() - counter-- und wenn countery0 blockiert
@@ -149,26 +149,81 @@
       </ul>
     </li>
     <li>
-      <h4>Kritische Abschnitte</h4>
+      <h4>Producer - Consumer Problem</h4>
       <ul>
+        <img src="./assets/Producer-Consumer.jpg" />
+        <li>Puffer zwischen Erzeuger und Verbraucher</li>
+        <li>Puffer voll: Erzeuger muss Produktion pausieren</li>
+        <li>Puffer leer: Verbraucher kann keine Daten erhalten</li>
+        <li>Wechselseitiger Auschluss notwendig, um Fehler zu vermeiden</li>
+        <img src="./assets/Producer-ConsumerSemaphoren.jpg" />
+        <li>Semaphoren schützen den Puffer</li>
+        <li>lock blockiert, sobald ein Prozess den Puffer verwendet</li>
+        <li>leer und voll verwalten die Länge vom Puffer</li>
+      </ul>
+    </li>
+    <li>
+      <h4>Deadlocks</h4>
+      <ul>
+        <li>Jeder Prozess wartet auf einen anderen</li>
+        <li>Sind aus Code nicht zu erkennen</li>
         <li>
-          Sicherung
+          Liegt an Aktivierungsreihenfolge der Prozesse (Zufall - Kann 1000 mal
+          gut gehen)
+        </li>
+        <li>
+          Bedingungen für Deadlocks
           <ul>
-            <li>SoftwareLösungen (Einfacher Lock, Strikter Wechsel)</li>
-            <li>Atomare Funktionen</li>
+            <li>Wechselseitiger Ausschluss</li>
+            <li>Anfordern von Betriebsmitteln</li>
             <li>
-              Semaphor
-              <ul>
-                <li></li>
-              </ul>
+              Ununterbrechbarkeit (Ein Blockierter Prozess kann nicht
+              unterbrochen werden)
             </li>
             <li>
-              Deadlocks
+              Zyklische Wartebedingung (Zyklische Kette von Prozessen - Jeder
+              Prozess wartet auf den nächsten)
+            </li>
+          </ul>
+        </li>
+        <li>
+          Erkennen von Deadlocks
+          <ul>
+            <li>
+              Betriebsmittelgraphen
               <ul>
-                <li>Erkennen(Betriebsmittelgrapen</li>
-                <li>Beheben</li>
+                <img src="./assets/Betriebsmittelgraph.jpg" />
+                <li>Prozess = Kreis</li>
+                <li>Ressource = Rechteck</li>
+                <li>
+                  Zugriff auf Ressourcen mit Pfeilen markieren
+                  <ul>
+                    <li>
+                      Kante von Ressource zu Prozess: Prozess belegt Ressource
+                    </li>
+                    <li>
+                      Kante von Prozess zu Ressource: Prozess wartet auf
+                      Ressource
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Wenn Kanten einen Zyklus bilden, dann kann sich dort ein
+                  Deadlock bilden
+                </li>
               </ul>
             </li>
+          </ul>
+        </li>
+        <li>
+          Behandeln von Deadlocks
+          <ul>
+            <li>Ignorieren (Unix - Passiert eh nicht häufig)</li>
+            <li>Erkennen und Beheben</li>
+            <li>
+              Dynamische Verhinderung durch vorsichtige Betriebsmittelzuteilung
+            </li>
+            <li>Verbieten einer Bedingung (Siehe oben)</li>
           </ul>
         </li>
       </ul>
